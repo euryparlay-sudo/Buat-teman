@@ -140,7 +140,7 @@
         <b style="color: #ffd700; font-size: 1.2rem;">Cheers for more good times ahead, Guys!</b>
     </div>
 
-    <script>
+                    <script>
         const overlay = document.getElementById('overlay');
         const music = document.getElementById('bgMusic');
         const p1 = document.getElementById('p1');
@@ -167,18 +167,19 @@
             }, 6000);
         });
 
-                mainStage.addEventListener('click', () => {
+        mainStage.addEventListener('click', () => {
             if (step === 1) {
                 p1.style.transform = "rotateY(-180deg)";
-                p1.style.zIndex = "1"; // Tambahkan ini agar p1 pindah ke bawah setelah dibuka
+                // Setelah animasi putar selesai (1.2 detik), sembunyikan p1
+                setTimeout(() => { p1.style.opacity = "0"; }, 1200); 
                 step = 2;
             } else if (step === 2) {
                 p2.style.transform = "rotateY(-180deg)";
-                p2.style.zIndex = "2"; // Tambahkan ini agar p2 pindah ke bawah setelah dibuka
+                // Setelah animasi putar selesai, sembunyikan p2 agar foto 3 & 4 jelas
+                setTimeout(() => { p2.style.opacity = "0"; }, 1200);
                 step = 3;
             } else if (step === 3) {
                 p3.style.transform = "rotateY(-180deg)";
-                p3.style.zIndex = "3"; // Tambahkan ini agar p3 pindah ke bawah setelah dibuka
                 step = 4;
                 setTimeout(() => {
                     book.style.opacity = "0";
@@ -190,11 +191,12 @@
             }
         });
 
-
         function createStar() {
             const star = document.createElement('div');
             star.className = 'star';
             const size = Math.random() * 2 + 1 + 'px';
+            star.style.width = size;
+            star.style.height = size;
             star.style.left = Math.random() * 100 + 'vw';
             star.style.top = '-5vh';
             star.style.animationDuration = Math.random() * 2 + 3 + 's';
@@ -203,5 +205,6 @@
         }
         setInterval(createStar, 150);
     </script>
+
 </body>
 </html>
