@@ -167,15 +167,18 @@
             }, 6000);
         });
 
-        mainStage.addEventListener('click', () => {
+                mainStage.addEventListener('click', () => {
             if (step === 1) {
                 p1.style.transform = "rotateY(-180deg)";
+                p1.style.zIndex = "1"; // Tambahkan ini agar p1 pindah ke bawah setelah dibuka
                 step = 2;
             } else if (step === 2) {
                 p2.style.transform = "rotateY(-180deg)";
+                p2.style.zIndex = "2"; // Tambahkan ini agar p2 pindah ke bawah setelah dibuka
                 step = 3;
             } else if (step === 3) {
                 p3.style.transform = "rotateY(-180deg)";
+                p3.style.zIndex = "3"; // Tambahkan ini agar p3 pindah ke bawah setelah dibuka
                 step = 4;
                 setTimeout(() => {
                     book.style.opacity = "0";
@@ -186,6 +189,7 @@
                 }, 1200);
             }
         });
+
 
         function createStar() {
             const star = document.createElement('div');
