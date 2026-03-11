@@ -141,70 +141,70 @@
     </div>
 
                     <script>
-        const overlay = document.getElementById('overlay');
-        const music = document.getElementById('bgMusic');
-        const p1 = document.getElementById('p1');
-        const p2 = document.getElementById('p2');
-        const p3 = document.getElementById('p3');
-        const book = document.getElementById('myBook');
-        const mainStage = document.getElementById('main-stage');
-        const msg = document.getElementById('message');
+    const overlay = document.getElementById('overlay');
+    const music = document.getElementById('bgMusic');
+    const mainStage = document.getElementById('main-stage');
+    const msg = document.getElementById('message');
+    const book = document.getElementById('myBook');
 
-        let step = 0;
+    let step = 0;
 
-        overlay.addEventListener('click', () => {
-            overlay.style.display = 'none';
-            music.play();
-            document.getElementById('text1').classList.add('animate-now');
+    overlay.addEventListener('click', () => {
+        overlay.style.display = 'none';
+        music.play();
+        document.getElementById('text1').classList.add('animate-now');
+        setTimeout(() => {
+            document.getElementById('text1').style.display = 'none';
+            document.getElementById('text2').classList.add('animate-now');
+        }, 3000);
+        setTimeout(() => {
+            document.getElementById('text2').style.display = 'none';
+            mainStage.style.display = 'flex';
+            step = 1;
+        }, 6000);
+    });
+
+    mainStage.addEventListener('click', () => {
+        if (step === 1) {
+            const p1 = document.getElementById('p1');
+            p1.style.transform = "rotateY(-180deg)";
+            // PERBAIKAN: z-index dipindah ke belakang agar tidak menutupi foto berikutnya
+            setTimeout(() => { p1.style.zIndex = "1"; }, 500); 
+            step = 2;
+        } else if (step === 2) {
+            const p2 = document.getElementById('p2');
+            p2.style.transform = "rotateY(-180deg)";
+            // PERBAIKAN: Jangan pakai opacity 0 agar foto 3 tetap kelihatan
+            setTimeout(() => { p2.style.zIndex = "2"; }, 500);
+            step = 3;
+        } else if (step === 3) {
+            const p3 = document.getElementById('p3');
+            p3.style.transform = "rotateY(-180deg)";
+            step = 4;
             setTimeout(() => {
-                document.getElementById('text1').style.display = 'none';
-                document.getElementById('text2').classList.add('animate-now');
-            }, 3000);
-            setTimeout(() => {
-                document.getElementById('text2').style.display = 'none';
-                mainStage.style.display = 'flex';
-                step = 1;
-            }, 6000);
-        });
-
-        mainStage.addEventListener('click', () => {
-            if (step === 1) {
-                p1.style.transform = "rotateY(-180deg)";
-                // Setelah animasi putar selesai (1.2 detik), sembunyikan p1
-                setTimeout(() => { p1.style.opacity = "0"; }, 1200); 
-                step = 2;
-            } else if (step === 2) {
-                p2.style.transform = "rotateY(-180deg)";
-                // Setelah animasi putar selesai, sembunyikan p2 agar foto 3 & 4 jelas
-                setTimeout(() => { p2.style.opacity = "0"; }, 1200);
-                step = 3;
-            } else if (step === 3) {
-                p3.style.transform = "rotateY(-180deg)";
-                step = 4;
+                book.style.opacity = "0";
                 setTimeout(() => {
-                    book.style.opacity = "0";
-                    setTimeout(() => {
-                        mainStage.style.display = "none";
-                        msg.classList.add('show-msg');
-                    }, 1000);
-                }, 1200);
-            }
-        });
-
-        function createStar() {
-            const star = document.createElement('div');
-            star.className = 'star';
-            const size = Math.random() * 2 + 1 + 'px';
-            star.style.width = size;
-            star.style.height = size;
-            star.style.left = Math.random() * 100 + 'vw';
-            star.style.top = '-5vh';
-            star.style.animationDuration = Math.random() * 2 + 3 + 's';
-            document.body.appendChild(star);
-            setTimeout(() => star.remove(), 4000);
+                    mainStage.style.display = "none";
+                    msg.classList.add('show-msg');
+                }, 1000);
+            }, 1200);
         }
-        setInterval(createStar, 150);
-    </script>
+    });
+
+    function createStar() {
+        const star = document.createElement('div');
+        star.className = 'star';
+        const size = Math.random() * 2 + 1 + 'px';
+        star.style.width = size;
+        star.style.height = size;
+        star.style.left = Math.random() * 100 + 'vw';
+        star.style.top = '-5vh';
+        star.style.animationDuration = Math.random() * 2 + 3 + 's';
+        document.body.appendChild(star);
+        setTimeout(() => star.remove(), 4000);
+    }
+    setInterval(createStar, 150);
+</script>
 
 </body>
 </html>
