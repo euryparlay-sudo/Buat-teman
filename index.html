@@ -180,9 +180,13 @@ img {
     mainStage.addEventListener('click', () => {
         if (step === 1) {
             p1.style.transform = "rotateY(-180deg)";
+            // Menurunkan z-index p1 agar p2 bisa terlihat di atasnya saat terbuka
+            setTimeout(() => { p1.style.zIndex = "1"; }, 600);
             step = 2;
         } else if (step === 2) {
             p2.style.transform = "rotateY(-180deg)";
+            // Menurunkan z-index p2 agar p3 bisa terlihat di atasnya
+            setTimeout(() => { p2.style.zIndex = "2"; }, 600);
             step = 3;
         } else if (step === 3) {
             p3.style.transform = "rotateY(-180deg)";
@@ -193,7 +197,7 @@ img {
                     mainStage.style.display = "none";
                     msg.classList.add('show-msg');
                 }, 1000);
-            }, 3000); 
+            }, 3000);
         }
     });
 
@@ -211,6 +215,7 @@ img {
     }
     setInterval(createStar, 150);
 </script>
+
 
 
 
