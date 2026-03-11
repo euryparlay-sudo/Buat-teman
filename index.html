@@ -180,16 +180,18 @@ img {
     mainStage.addEventListener('click', () => {
         if (step === 1) {
             p1.style.transform = "rotateY(-180deg)";
-            // Menurunkan z-index p1 agar p2 bisa terlihat di atasnya saat terbuka
-            setTimeout(() => { p1.style.zIndex = "1"; }, 600);
+            
+            p1.style.zIndex = "5"; 
             step = 2;
         } else if (step === 2) {
             p2.style.transform = "rotateY(-180deg)";
-            // Menurunkan z-index p2 agar p3 bisa terlihat di atasnya
-            setTimeout(() => { p2.style.zIndex = "2"; }, 600);
+            
+            p2.style.zIndex = "6"; 
             step = 3;
         } else if (step === 3) {
             p3.style.transform = "rotateY(-180deg)";
+            
+            p3.style.zIndex = "7";
             step = 4;
             setTimeout(() => {
                 book.style.opacity = "0";
