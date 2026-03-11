@@ -146,6 +146,9 @@
     const mainStage = document.getElementById('main-stage');
     const msg = document.getElementById('message');
     const book = document.getElementById('myBook');
+    const p1 = document.getElementById('p1');
+    const p2 = document.getElementById('p2');
+    const p3 = document.getElementById('p3');
 
     let step = 0;
 
@@ -166,19 +169,12 @@
 
     mainStage.addEventListener('click', () => {
         if (step === 1) {
-            const p1 = document.getElementById('p1');
             p1.style.transform = "rotateY(-180deg)";
-            // PERBAIKAN: z-index dipindah ke belakang agar tidak menutupi foto berikutnya
-            setTimeout(() => { p1.style.zIndex = "1"; }, 500); 
             step = 2;
         } else if (step === 2) {
-            const p2 = document.getElementById('p2');
             p2.style.transform = "rotateY(-180deg)";
-            // PERBAIKAN: Jangan pakai opacity 0 agar foto 3 tetap kelihatan
-            setTimeout(() => { p2.style.zIndex = "2"; }, 500);
             step = 3;
         } else if (step === 3) {
-            const p3 = document.getElementById('p3');
             p3.style.transform = "rotateY(-180deg)";
             step = 4;
             setTimeout(() => {
@@ -187,7 +183,7 @@
                     mainStage.style.display = "none";
                     msg.classList.add('show-msg');
                 }, 1000);
-            }, 1200);
+            }, 2000);
         }
     });
 
@@ -205,6 +201,7 @@
     }
     setInterval(createStar, 150);
 </script>
+
 
 </body>
 </html>
